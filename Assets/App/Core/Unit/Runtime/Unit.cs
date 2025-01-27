@@ -19,13 +19,17 @@ namespace Core.Entitas
         public void Initialize()
         {
             m_Health = new Health(100);
-
             m_Head = new BodyPart();
             m_Body = new BodyPart();
             m_BodyParts = new List<BodyPart>
             {
                 m_Head, m_Body
             };
+        }
+
+        public void RefreshHP()
+        {
+            m_Health.Refresh();
         }
 
         public void TakeDamage(int damage, int bodyIndex)
@@ -46,6 +50,16 @@ namespace Core.Entitas
         public void UnsubscribeOnHealthChanged(Action<int> action)
         {
             m_Health.OnHealthChange -= action;
+        }
+
+        public void SubscribeOnDead(Action action)
+        {
+            m_Health.OnDead += action;
+        }
+
+        public void UnsubscribeOnDead(Action action)
+        {
+            m_Health.OnDead -= action;
         }
     }
 }

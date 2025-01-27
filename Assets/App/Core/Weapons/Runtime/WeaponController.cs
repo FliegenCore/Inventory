@@ -23,6 +23,9 @@ namespace Core.Weapons
         private Pistol m_Pistol = new Pistol();
         private Rifle m_Rifle = new Rifle();
 
+        public Pistol Pistol => m_Pistol;
+        public Rifle Rifle => m_Rifle;  
+
         public void PreInit()
         {
             m_EventManager.Subscribe<SetWeaponSignal, IWeapon>(this, SetWeapon);

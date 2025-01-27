@@ -9,11 +9,6 @@ namespace Core.Entitas
         [SerializeField] private TMP_Text m_HealthText;
         [SerializeField] private Slider m_Slider;
 
-        public void Initialize(int maxHealth)
-        {
-            m_Slider.maxValue = maxHealth;
-        }
-
         public void UpdateHealth(int health)
         {
             m_HealthText.text = $"{health}";

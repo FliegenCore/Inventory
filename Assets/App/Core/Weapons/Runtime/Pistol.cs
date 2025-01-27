@@ -38,5 +38,11 @@ namespace Core.Weapons
             m_OnShoot?.Invoke(m_WeaponData.Damage);
             OnBulletCountChange?.Invoke(m_WeaponData.BulletCount);
         }
+
+        public void AddBulletInMagazine(int count)
+        {
+            m_WeaponData.BulletCount += count;
+            OnBulletCountChange?.Invoke(m_WeaponData.BulletCount);
+        }
     }
 }

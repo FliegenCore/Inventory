@@ -1,8 +1,10 @@
 using Assets;
+using Common;
+using Core.Entitas;
 using Core.UI;
 using System;
-using Unity.VisualScripting.Dependencies.NCalc;
-using UnityEditor;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Core.Inventory
@@ -14,6 +16,8 @@ namespace Core.Inventory
 
         [Inject] private AssetLoader m_AssetLoader;
         [Inject] private CoreUIController m_CoreUIController;
+        [Inject] private SaveSystem m_SaveSystem;
+        [Inject] private EnemyController m_EnemyController;
 
         private InventoryView m_InventoryView;
         private PlayerInput m_PlayerInput;
@@ -21,49 +25,44 @@ namespace Core.Inventory
         private SlotView m_CurrentSlotView;
         private SlotView m_NearestSlot;
 
-        private SlotData[] m_SlotsData;
-        private SlotData[] m_ArmorSlots;
+        [SerializeField] private SlotData[] m_SlotsData;
+        [SerializeField] private SlotData[] m_ArmorSlots;
+
+        private List<string> m_ItemsName = new List<string>();
 
         public SlotData[] ArmorSlots => m_ArmorSlots;
         public SlotData[] SlotsData => m_SlotsData;
 
         public void PreInit()
         {
+            FillItemsList();
+            m_EnemyController.Unit.SubscribeOnDead(AddRandomItem);
+
             m_InventoryView = m_CoreUIController.CoreUI.InventoryView;
             m_PlayerInput = m_CoreUIController.CoreUI.PlayerInput;
             m_SlotsData = new SlotData[m_InventoryView.SlotsView.Length];
             m_ArmorSlots = new SlotData[m_InventoryView.ArmorSlots.Length];
-
-            for (int i = 0; i < m_SlotsData.Length; i++)
-            {
-                m_SlotsData[i] = new SlotData();
-            }
 
             for (int i = 0; i < m_ArmorSlots.Length; i++)
             {
                 m_ArmorSlots[i] = new SlotData();
             }
 
-            m_SlotsData[0].ItemsCount = 1;
-            m_SlotsData[0].ItemId = "medkit";
+            SlotDataArray slotsArray = m_SaveSystem.Load<SlotDataArray>("slots");
 
-            m_SlotsData[10].ItemsCount = 11;
-            m_SlotsData[10].ItemId = "9x18";
+            if (slotsArray != null)
+            {
+                m_SlotsData = slotsArray.Slots;
+            }
+            else
+            {
+                for (int i = 0; i < m_SlotsData.Length; i++)
+                {
+                    m_SlotsData[i] = new SlotData();
+                }
+            }
 
-            m_SlotsData[11].ItemId = "cap";
-            m_SlotsData[11].ItemsCount = 1;
-
-            m_SlotsData[12].ItemId = "cap";
-            m_SlotsData[12].ItemsCount = 1;
-
-            m_SlotsData[13].ItemId = "helmet";
-            m_SlotsData[13].ItemsCount = 1;
-
-            m_SlotsData[14].ItemId = "jacket";
-            m_SlotsData[14].ItemsCount = 1;
-
-            m_SlotsData[15].ItemId = "bulletproof";
-            m_SlotsData[15].ItemsCount = 1;
+            RefreshUI();
         }
 
         public void Init()
@@ -76,6 +75,11 @@ namespace Core.Inventory
             m_InventoryView.RefreshInventoryUI(m_SlotsData, m_ArmorSlots);
 
             m_OnSlotsDataChanged += m_InventoryView.RefreshInventoryUI;
+        }
+
+        public int GetCountInStuck(int index)
+        {
+            return m_SlotsData[index].ItemsCount;
         }
 
         public string GetId(int index)
@@ -91,9 +95,9 @@ namespace Core.Inventory
             m_OnSlotsDataChanged?.Invoke(m_SlotsData, m_ArmorSlots);
         }
 
-        public void DeleteItem(int index)
+        public void DeleteItem(int index, int count = 1)
         {
-            m_SlotsData[index].ItemsCount--;
+            m_SlotsData[index].ItemsCount -= count;
 
             if (m_SlotsData[index].ItemsCount <= 0)
             {
@@ -106,6 +110,28 @@ namespace Core.Inventory
         public void RefreshUI()
         {
             m_OnSlotsDataChanged?.Invoke(m_SlotsData, m_ArmorSlots);
+        }
+
+        private void AddRandomItem()
+        {
+            foreach (var slot in m_SlotsData)
+            {
+                if (slot.ItemsCount > 0)
+                {
+                    continue;
+                }
+
+                var itemJson = m_AssetLoader.LoadSync<TextAsset>(m_ItemsName[UnityEngine.Random.Range(0, m_ItemsName.Count)]);
+
+                ItemData itemData = JsonUtility.FromJson<ItemData>(itemJson.text);
+
+                slot.ItemId = itemData.Id;
+                slot.ItemsCount = itemData.StuckCount;
+
+                break;
+            }
+
+            RefreshUI();
         }
 
         private void CashDragItem(IDragAndDrop dragAndDrop)
@@ -164,17 +190,18 @@ namespace Core.Inventory
             }
         }
 
-        private void Update()
+        private void FillItemsList()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
+            string folder = Directory.GetCurrentDirectory() + "\\Assets\\App\\Core\\Items\\Json";
+
+            if (Directory.Exists(folder))
             {
-                foreach (var item in m_SlotsData)
+                string[] jsonFiles = Directory.GetFiles(folder, "*.json");
+
+                foreach (string filePath in jsonFiles)
                 {
-                    if (item.ItemsCount == 0 || item.ItemId == string.Empty || item.ItemId == "")
-                    {
-                        continue;
-                    }
-                    Debug.Log($"{item.ItemsCount}       {item.ItemId}");
+                    string fileName = Path.GetFileNameWithoutExtension(filePath);
+                    m_ItemsName.Add(fileName);
                 }
             }
         }
@@ -184,6 +211,12 @@ namespace Core.Inventory
             m_PlayerInput.OnStartDrag -= CashDragItem;
             m_PlayerInput.OnEndDrag -= TrySwitch;
             m_PlayerInput.OnDragging -= FindNearestSlot;
+        }
+
+        private void OnApplicationQuit()
+        {
+            SlotDataArray slotsArray = new SlotDataArray(m_SlotsData);
+            m_SaveSystem.Save(slotsArray, "slots");
         }
     }
 }

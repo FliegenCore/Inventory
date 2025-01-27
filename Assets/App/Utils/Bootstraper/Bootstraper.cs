@@ -1,4 +1,5 @@
 using Assets;
+using Common;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,11 +13,13 @@ namespace Core.Common
 
         private EventManager m_EventManager = new EventManager();
         private AssetLoader m_AssetsLoader = new AssetLoader();
+        private SaveSystem m_SaveSystem = new SaveSystem();
 
         private void Awake()
         {
             m_Entites.Add(m_EventManager);
             m_Entites.Add(m_AssetsLoader);
+            m_Entites.Add(m_SaveSystem);
 
             FindAllControllers();
         }

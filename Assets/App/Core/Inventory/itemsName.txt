@@ -1,0 +1,7 @@
+5.35x39
+9x18
+bulletproof
+cap
+helmet
+jacket
+medkit

@@ -8,5 +8,6 @@ namespace Core.Weapons
         void Initialize(Action<int> action);
         WeaponData WeaponData { get; set; }
         void Shoot();
+        void AddBulletInMagazine(int count);
     }
 }

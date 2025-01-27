@@ -7,10 +7,10 @@ namespace Core.Items
     {
         private const int m_HealthRestoreCount = 50;
 
-        private Action m_Callback;
+        private Action<int> m_Callback;
         private IHealthRestorer m_HealthRestorer;
 
-        public Medkit(IHealthRestorer healthRestorer, Action callback)
+        public Medkit(IHealthRestorer healthRestorer, Action<int> callback)
         {
             m_Callback = callback;
             m_HealthRestorer = healthRestorer;
@@ -24,7 +24,7 @@ namespace Core.Items
         public void Use()
         {
             m_HealthRestorer.RestoreHealth(m_HealthRestoreCount);
-            m_Callback?.Invoke();
+            m_Callback?.Invoke(1);
         }
     }
 }
