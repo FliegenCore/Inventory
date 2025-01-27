@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Icons
+  m_EditorClassIdentifier: 
+  m_GroupName: Icons
+  m_GUID: fd1f6683a077dcf4690d4be6dcc502d9
+  m_SerializeEntries:
+  - m_GUID: 0dbfd85f1986e13438db7b8ae3ae2d29
+    m_Address: cartridges_icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11183496d48ddb5438d711d5321cc2dd
+    m_Address: armor_icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c62701f069ac2047ae8f6bb2473c7be
+    m_Address: health_icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 34a5ec5dd71915944adbfaa975b29cb5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 903201bfce8d10f4c9bab6fb573687e9, type: 2}
+    - {fileID: 11400000, guid: 6bd703c67782e2642b3f08b49544f3be, type: 2}

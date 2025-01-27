@@ -1,0 +1,33 @@
+{
+  "ItemsWrapper": [
+    {
+      "Key": "medkit",
+      "Value": "Аптечка"
+    },
+    {
+      "Key": "5.35x39",
+      "Value": "Патроны 5.35x39"
+    },
+    {
+      "Key": "9x18",
+      "Value": "Патроны 9x18"
+    },
+    {
+      "Key": "bulletproof",
+      "Value": "Бронижелет"
+    },
+    {
+      "Key": "cap",
+      "Value": "Кепка"
+    },
+    {
+      "Key": "helmet",
+      "Value": "Шлем"
+    },
+    {
+      "Key": "jacket",
+      "Value": "Куртка"
+    }
+  ]
+}
+

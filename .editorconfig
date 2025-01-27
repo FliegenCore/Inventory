@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE0051: Удалите неиспользуемые закрытые члены
+dotnet_diagnostic.IDE0051.severity = none
+
+# UNT0001: Empty Unity message
+dotnet_diagnostic.UNT0001.severity = none

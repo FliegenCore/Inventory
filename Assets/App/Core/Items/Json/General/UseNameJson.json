@@ -1,0 +1,17 @@
+{
+  "ItemsWrapper": [
+    {
+      "Key": "health",
+      "Value": "Лечить"
+    },
+    {
+      "Key": "cartridges",
+      "Value": "Купить"
+    },
+    {
+      "Key": "armor",
+      "Value": "Экипировать"
+    }
+  ]
+}
+

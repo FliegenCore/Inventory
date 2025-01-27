@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ItemsSprite
+  m_EditorClassIdentifier: 
+  m_GroupName: ItemsSprite
+  m_GUID: 54df28035410f3d40ba32a7d6a6c8c86
+  m_SerializeEntries:
+  - m_GUID: 3b88cd8101177f94cbe44729b8019c7e
+    m_Address: jacket_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47b00c7d3491cae4e9cf039d7735ad34
+    m_Address: cap_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50c2022f3b2bafb438cb81a2dce930a8
+    m_Address: 5.35x39_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 829b99d8efd3d9543b36124329f1a48f
+    m_Address: bulletproof_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b23840e72979ded4e89fd78901aeb354
+    m_Address: medkit_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e294e3af87be6b14f9e911d97e54a14a
+    m_Address: helmet_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eec23f3a7fc5ad54bbafd48361ab74fa
+    m_Address: 9x18_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 34a5ec5dd71915944adbfaa975b29cb5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bab3acfcc0991d348ac8008cf5c5e609, type: 2}
+    - {fileID: 11400000, guid: 0e1df25326f09db4aac67c239be971a7, type: 2}

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Jsons
+  m_EditorClassIdentifier: 
+  m_GroupName: Jsons
+  m_GUID: d81db079f6b568340b1eb60fccac85bd
+  m_SerializeEntries:
+  - m_GUID: 253968361c5c0fe46873da5c2729f227
+    m_Address: 9x18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68fbe56125a6d9e43b622dfcc9f3e768
+    m_Address: UseNameJson
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88e1afad3ac982d4c837b6937635824f
+    m_Address: 5.35x39
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0c80d9f753a6c64e89ded7ba505b427
+    m_Address: medkit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2a812d37bf231745b9b0a2d79d7bf50
+    m_Address: GeneralJson
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cadcd9a3afaecc4418f18414f882e563
+    m_Address: cap
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf5fc7da3569d9747af64c732c705055
+    m_Address: helmet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f971ce4af52497f478e7d4af6fdf2a82
+    m_Address: bulletproof
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc3030723dd708547b4a408e367a695a
+    m_Address: jacket
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 34a5ec5dd71915944adbfaa975b29cb5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 59f4e0de917ae394f95557f4199f591a, type: 2}
+    - {fileID: 11400000, guid: d902fc69951c94343bc6bfc2c694c9e4, type: 2}

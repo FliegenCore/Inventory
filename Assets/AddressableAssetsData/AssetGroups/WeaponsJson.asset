@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: WeaponsJson
+  m_EditorClassIdentifier: 
+  m_GroupName: WeaponsJson
+  m_GUID: 027db93ffcf249e408a010a01af3cce9
+  m_SerializeEntries:
+  - m_GUID: 5ec4081e37a0eb24eac63d19b063e6fe
+    m_Address: Pistol
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7a27edcdc4b5bb4393f8245a2ef5c76
+    m_Address: Rifle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 34a5ec5dd71915944adbfaa975b29cb5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 187d6b3afea06b44e8fcbf27c51483fd, type: 2}
+    - {fileID: 11400000, guid: c271b4219b5ef784394e4b9209afe817, type: 2}
