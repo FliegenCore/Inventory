@@ -10,18 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: WeaponsJson
+  m_Name: UI
   m_EditorClassIdentifier: 
-  m_GroupName: WeaponsJson
-  m_GUID: 027db93ffcf249e408a010a01af3cce9
+  m_GroupName: UI
+  m_GUID: b1989a4f3c16ec9419fa5991cb3eedd5
   m_SerializeEntries:
-  - m_GUID: 5ec4081e37a0eb24eac63d19b063e6fe
-    m_Address: PistolData
+  - m_GUID: 3337981290f04604b8c563267b8eb7c8
+    m_Address: ItemInfoView
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b7a27edcdc4b5bb4393f8245a2ef5c76
-    m_Address: RifleData
+  - m_GUID: 5b7df8ce9442a144ab8e0bd11ca97e0f
+    m_Address: Fade
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ff75b80d65c2c446b84f01877c18bf1
+    m_Address: GameOverWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af66c542a6e12f6479eb7e0db9032545
+    m_Address: PopupUI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -29,5 +39,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 34a5ec5dd71915944adbfaa975b29cb5, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 187d6b3afea06b44e8fcbf27c51483fd, type: 2}
-    - {fileID: 11400000, guid: c271b4219b5ef784394e4b9209afe817, type: 2}
+    - {fileID: 11400000, guid: 30d2cd0db744a1147994ba520f807dd2, type: 2}
+    - {fileID: 11400000, guid: de1f651f626bfe446b678e8a2d4dfaea, type: 2}

@@ -48,6 +48,11 @@ namespace Core.Items
             m_EventManager.TriggerEvenet<CloseItemInfoSignal>();
         }
 
+        public void UseItem(string id)
+        {
+            m_ItemsActions[id].Use();
+        }
+
         public string GetAddedInfo(string id)
         {
             if (!m_ItemsActions.ContainsKey(id))

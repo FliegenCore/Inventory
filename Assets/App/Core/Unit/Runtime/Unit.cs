@@ -18,13 +18,18 @@ namespace Core.Entitas
 
         public void Initialize()
         {
-            m_Health = new Health(100);
+            m_Health = new Health();
             m_Head = new BodyPart();
             m_Body = new BodyPart();
             m_BodyParts = new List<BodyPart>
             {
                 m_Head, m_Body
             };
+        }
+
+        public void SetHealthData(HealthData healthData)
+        { 
+            m_Health.SetData(healthData);
         }
 
         public void RefreshHP()

@@ -34,6 +34,11 @@ namespace Core.Weapons
 
             for (int i = 0; i < 3; i++)
             {
+                if (m_WeaponData.BulletCount <= 0)
+                {
+                    return;
+                }
+
                 m_WeaponData.BulletCount--;
                 await UniTask.WaitForSeconds(0.1f);
                 m_OnShoot?.Invoke(m_WeaponData.Damage);

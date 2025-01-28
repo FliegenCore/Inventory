@@ -1,6 +1,4 @@
 using System;
-using Unity.VisualScripting;
-using UnityEngine;
 
 namespace Core.Entitas
 {
@@ -9,52 +7,50 @@ namespace Core.Entitas
         public event Action OnDead;
         public event Action<int> OnHealthChange;
 
-        private int m_CurrentHealth;
-        private int m_MaxHealth;
+        private HealthData m_HealthData;
 
-        public Health(int maxHealth)
+        public void SetData(HealthData healthData)
         {
-            m_MaxHealth = maxHealth;
-            m_CurrentHealth = maxHealth;
+            m_HealthData = healthData;
 
-            OnHealthChange?.Invoke(m_CurrentHealth);
+            OnHealthChange?.Invoke(m_HealthData.CurrentHp);
         }
 
         public void Refresh()
         {
-            m_CurrentHealth = m_MaxHealth;
+            m_HealthData.CurrentHp = m_HealthData.MaxHp;
 
-            OnHealthChange?.Invoke(m_CurrentHealth);
+            OnHealthChange?.Invoke(m_HealthData.CurrentHp);
         }
 
         public void TakeDamage(int damage)
         {
-            if (m_CurrentHealth <= 0)
+            if (m_HealthData.CurrentHp <= 0)
             {
                 return;
             }
 
-            m_CurrentHealth -= damage;
+            m_HealthData.CurrentHp -= damage;
 
-            if (m_CurrentHealth <= 0)
+            if (m_HealthData.CurrentHp <= 0)
             {
+                m_HealthData.CurrentHp = 0;
                 OnDead?.Invoke();
-                m_CurrentHealth = 0;
             }
 
-            OnHealthChange?.Invoke(m_CurrentHealth);
+            OnHealthChange?.Invoke(m_HealthData.CurrentHp);
         }
 
         public void RestorHealth(int restore)
         {
-            m_CurrentHealth += restore;
+            m_HealthData.CurrentHp += restore;
 
-            if (m_CurrentHealth >= m_MaxHealth)
+            if (m_HealthData.CurrentHp >= m_HealthData.MaxHp)
             {
-                m_CurrentHealth = m_MaxHealth;
+                m_HealthData.CurrentHp = m_HealthData.MaxHp;
             }
 
-            OnHealthChange?.Invoke(m_CurrentHealth);
+            OnHealthChange?.Invoke(m_HealthData.CurrentHp);
         }
     }
 }

@@ -30,13 +30,13 @@ namespace Core.Inventory
             Refresh(armorSlots, m_ArmorSlots);
         }
 
-        private void Refresh(SlotData[] slotsData, SlotView[] slotsView)
+        private void Refresh(SlotData[] slotsData, SlotView[] slotsArmorView)
         {
-            for (int i = 0; i < slotsView.Length; i++)
+            for (int i = 0; i < slotsArmorView.Length; i++)
             {
                 if (slotsData[i].ItemId == null || slotsData[i].ItemId == string.Empty)
                 {
-                    slotsView[i].UpdateSlotInfo(null, 0);
+                    slotsArmorView[i].UpdateSlotInfo(null, 0);
                     continue;
                 }
 
@@ -48,7 +48,7 @@ namespace Core.Inventory
                     sprite = spriteRes.Object;
                 }
 
-                slotsView[i].UpdateSlotInfo(sprite, slotsData[i].ItemsCount);
+                slotsArmorView[i].UpdateSlotInfo(sprite, slotsData[i].ItemsCount);
             }
         }
 

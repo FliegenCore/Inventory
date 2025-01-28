@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using Common;
 using Cysharp.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace Assets
 
             if (opHandle.Status == AsyncOperationStatus.Failed)
             {
-                throw new Exception($"Не удалось загрузить ассет {key.Name}");
+                throw new Exception($"РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ Р°СЃСЃРµС‚ {key.Name}");
             }
 
             m_LoadedAssets.Add(key.Name, opHandle.Result);
@@ -45,13 +45,34 @@ namespace Assets
 
             if (opHandle.Status == AsyncOperationStatus.Failed)
             {
-                throw new Exception($"Не удалось загрузить ассет {key.Name}");
+                throw new Exception($"РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ Р°СЃСЃРµС‚ {key.Name}");
             }
 
             m_LoadedAssets.Add(key.Name, opHandle.Result);
 
             return opHandle.Result;
         }
+
+        public T LoadGameObjectSync<T>(AssetName key)
+        {
+            var opHandle = Addressables.LoadAssetAsync<GameObject>(key.Name);
+            opHandle.WaitForCompletion();
+
+            if (opHandle.Status == AsyncOperationStatus.Failed)
+            {
+                throw new Exception($"ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г§Г ГЈГ°ГіГ§ГЁГІГј Г Г±Г±ГҐГІ {key.Name}");
+            }
+
+            var obj = opHandle.Result.GetComponent<T>();
+
+            if (obj == null)
+            {
+                throw new Exception($"ГЉГ®Г¬ГЇГ®Г­ГҐГ­ГІ ГІГЁГЇГ  {typeof(T)} Г­ГҐ Г­Г Г©Г¤ГҐГ­ Г­Г  Г§Г ГЈГ°ГіГ¦ГҐГ­Г­Г®Г¬ GameObject {key.Name}");
+            }
+
+            return obj;
+        }
+
 
         public T InstantiateSync<T>(T handle, Transform parent) where T : Component
         {
@@ -64,7 +85,7 @@ namespace Assets
             }
             else
             {
-                throw new Exception($"{nameof(T)} не найден");
+                throw new Exception($"{nameof(T)} РЅРµ РЅР°Р№РґРµРЅ");
             }
         }
 
@@ -79,7 +100,7 @@ namespace Assets
             }
             else
             {
-                throw new Exception($"{nameof(T)} не найден");
+                throw new Exception($"{nameof(T)} РЅРµ РЅР°Р№РґРµРЅ");
             }
         }
 
@@ -94,7 +115,7 @@ namespace Assets
             }
             else
             {
-                throw new Exception($"{nameof(T)} не найден");
+                throw new Exception($"{nameof(T)} РЅРµ РЅР°Р№РґРµРЅ");
             }
         }
     }

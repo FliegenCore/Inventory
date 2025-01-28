@@ -1,5 +1,6 @@
 using Assets;
 using Common;
+using Common.Utils;
 using Core.Common;
 using Core.UI;
 using System;
@@ -16,6 +17,7 @@ namespace Core.Weapons
         [Inject] private EventManager m_EventManager;
         [Inject] private CoreUIController m_CoreUIController;
         [Inject] private AssetLoader m_AssetLoader;
+        [Inject] private SaveSystem m_SaveSystem;
 
         private IWeapon m_CurrentWeapon;
 
@@ -30,8 +32,8 @@ namespace Core.Weapons
         {
             m_EventManager.Subscribe<SetWeaponSignal, IWeapon>(this, SetWeapon);
 
-            m_Rifle.WeaponData = LoadWeaponData("Rifle");
-            m_Pistol.WeaponData = LoadWeaponData("Pistol");
+            m_Rifle.WeaponData = LoadWeaponData("RifleData");
+            m_Pistol.WeaponData = LoadWeaponData("PistolData");
 
             m_Pistol.OnBulletCountChange += UpdatePistolView;
             m_Rifle.OnBulletCountChange += UpdateRifleView;
@@ -97,10 +99,23 @@ namespace Core.Weapons
 
         private WeaponData LoadWeaponData(AssetName assetName)
         {
+            Result<WeaponData> resWeaponData = m_SaveSystem.Load<WeaponData>(assetName.Name);
+
+            if (resWeaponData.IsExist)
+            {
+                return resWeaponData.Object;
+            }
+
             TextAsset jsonTextAsset = m_AssetLoader.LoadSync<TextAsset>(assetName);
             WeaponData weaponData = JsonUtility.FromJson<WeaponData>(jsonTextAsset.text);
 
             return weaponData;
+        }
+
+        private void OnApplicationQuit()
+        {
+            m_SaveSystem.Save(m_Pistol.WeaponData, "PistolData");
+            m_SaveSystem.Save(m_Rifle.WeaponData, "RifleData");
         }
 
         private void OnDestroy()

@@ -1,4 +1,6 @@
+using Common.Utils;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Common
@@ -25,22 +27,32 @@ namespace Common
             File.WriteAllText(filePath, json);
         }
 
-        public T Load<T>(string fileName)
+        public Result<T> Load<T>(string fileName)
         {
             string filePath = Path.Combine(m_SaveDirectory, fileName + ".json");
+            Result<T> result = new Result<T>();
 
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
                 T data = JsonUtility.FromJson<T>(json);
-                Debug.Log($"Loaded data from {filePath}");
-                return data;
+                result = new Result<T>(data, true);
             }
-            else
+
+            return result;
+        }
+
+        public async Task DeleteSave()
+        {
+            await Task.Run(() =>
             {
-                Debug.LogWarning($"File not found: {filePath}");
-                return default;
-            }
+                string[] jsonFiles = Directory.GetFiles(m_SaveDirectory, "*.json");
+
+                foreach (string filePath in jsonFiles)
+                {
+                    File.Delete(filePath);
+                }
+            });
         }
     }
 }

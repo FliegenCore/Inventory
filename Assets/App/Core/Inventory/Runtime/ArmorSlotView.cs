@@ -1,25 +1,15 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Core.Inventory
+namespace Core.UI
 {
-
     public class ArmorSlotView : MonoBehaviour
     {
-        [SerializeField] private Image m_ItemSprite;
+        [SerializeField] private TMP_Text m_ArmorText;
 
-        private int m_CurrentIndex;
-
-        public int CurrentIndex => m_CurrentIndex;
-
-        public void Initialize(int index)
-        {
-            m_CurrentIndex = index;
-        }
-
-        public void SetItemSprite(Sprite sprite)
-        {
-            m_ItemSprite.sprite = sprite;
+        public void SetArmorText(int count)
+        { 
+            m_ArmorText.text = $"{count}";
         }
     }
 }

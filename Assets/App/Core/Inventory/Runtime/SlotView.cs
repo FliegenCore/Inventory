@@ -23,23 +23,33 @@ namespace Core.Inventory
             m_CurrentIndex = slotIndex;
         }
 
-        public void UpdateSlotInfo(Sprite itemSprite, int itemCount)
+        public void UpdateSlotInfo(Sprite itemSprite, int count)
         {
-            m_ItemsCount = itemCount;
+            m_ItemsCount = count;
 
             if (m_ItemSprite.sprite != itemSprite)
             { 
                 m_ItemSprite.sprite = itemSprite;
             }
 
-            if (itemCount <= 1)
+            if (m_ItemsCountText == null)
+            {
+                return;
+            }
+
+            if (count <= 1)
             {
                 m_ItemsCountText.text = string.Empty;
             }
             else
             {
-                m_ItemsCountText.text = $"{itemCount}";
+                m_ItemsCountText.text = $"{count}";
             }
+        }
+
+        public void UpdateCountText(int count)
+        {
+            m_ItemsCountText.text = $"{count}";
         }
 
         public void Drag(Vector2 position)

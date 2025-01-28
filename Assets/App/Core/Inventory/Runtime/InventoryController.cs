@@ -1,5 +1,6 @@
 using Assets;
 using Common;
+using Common.Utils;
 using Core.Entitas;
 using Core.UI;
 using System;
@@ -43,22 +44,31 @@ namespace Core.Inventory
             m_SlotsData = new SlotData[m_InventoryView.SlotsView.Length];
             m_ArmorSlots = new SlotData[m_InventoryView.ArmorSlots.Length];
 
-            for (int i = 0; i < m_ArmorSlots.Length; i++)
-            {
-                m_ArmorSlots[i] = new SlotData();
-            }
+            Result<SlotDataArray> slotsArray = m_SaveSystem.Load<SlotDataArray>("slots");
 
-            SlotDataArray slotsArray = m_SaveSystem.Load<SlotDataArray>("slots");
-
-            if (slotsArray != null)
+            if (slotsArray.IsExist)
             {
-                m_SlotsData = slotsArray.Slots;
+                m_SlotsData = slotsArray.Object.Slots;
             }
             else
             {
                 for (int i = 0; i < m_SlotsData.Length; i++)
                 {
                     m_SlotsData[i] = new SlotData();
+                }
+            }
+
+            Result<SlotDataArray> armorSlotsArray = m_SaveSystem.Load<SlotDataArray>("armorSlots");
+
+            if (armorSlotsArray.IsExist)
+            {
+                m_ArmorSlots = armorSlotsArray.Object.Slots;
+            }
+            else
+            {
+                for (int i = 0; i < m_ArmorSlots.Length; i++)
+                {
+                    m_ArmorSlots[i] = new SlotData();
                 }
             }
 
@@ -206,6 +216,14 @@ namespace Core.Inventory
             }
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.I))
+            {
+                AddRandomItem();
+            }
+        }
+
         private void OnDestroy()
         {
             m_PlayerInput.OnStartDrag -= CashDragItem;
@@ -217,6 +235,9 @@ namespace Core.Inventory
         {
             SlotDataArray slotsArray = new SlotDataArray(m_SlotsData);
             m_SaveSystem.Save(slotsArray, "slots");
+
+            SlotDataArray armorSlots = new SlotDataArray(m_ArmorSlots);
+            m_SaveSystem.Save(armorSlots, "armorSlots");
         }
     }
 }

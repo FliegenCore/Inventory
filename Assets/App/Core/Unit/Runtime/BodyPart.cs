@@ -4,7 +4,7 @@ namespace Core.Entitas
 {
     public class BodyPart
     {
-        public event Action<string> OnArmorSet;
+        public event Action<string, int> OnArmorSet;
 
         private int m_ArmorCount;
         private string m_ItemId;
@@ -17,7 +17,7 @@ namespace Core.Entitas
             m_ArmorCount = armor;
             m_ItemId = itemId;
 
-            OnArmorSet?.Invoke(m_ItemId);
+            OnArmorSet?.Invoke(m_ItemId, m_ArmorCount);
         }
     }
 }
